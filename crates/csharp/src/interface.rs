@@ -187,6 +187,8 @@ impl InterfaceGenerator<'_> {
                 self.csharp_gen.all_resources[id].name.to_upper_camel_case(),
                 "",
             ),
+            FunctionKind::Getter(_) => todo!("getter"),
+            FunctionKind::Setter(_) => todo!("setter"),
         };
 
         let access = self.csharp_gen.access_modifier();
@@ -345,6 +347,8 @@ impl InterfaceGenerator<'_> {
                 self.csharp_gen.all_resources[id].name.to_upper_camel_case(),
                 "",
             ),
+            FunctionKind::Getter(_) => todo!("getter"),
+            FunctionKind::Setter(_) => todo!("setter"),
         };
 
         let extra_modifiers = extra_modifiers(func, &camel_name);
@@ -892,6 +896,8 @@ impl InterfaceGenerator<'_> {
                 self.csharp_gen.all_resources[id].name.to_upper_camel_case(),
                 "",
             ),
+            FunctionKind::Getter(_) => todo!("getter"),
+            FunctionKind::Setter(_) => todo!("setter"),
         };
 
         let access = self.csharp_gen.access_modifier();

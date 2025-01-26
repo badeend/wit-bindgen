@@ -997,6 +997,8 @@ impl Bindgen for FunctionBindgen<'_, '_> {
                         uwriteln!(self.src, "var {ret} = new {target}({oper});");
                         results.push(ret);
                     }
+                    FunctionKind::Getter(_) => todo!("getter"),
+                    FunctionKind::Setter(_) => todo!("setter"),
                 }
 
                 for (_,  drop) in &self.resource_drops {

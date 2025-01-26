@@ -941,6 +941,8 @@ fn by_resource<'a>(
             .entry(match &func.kind {
                 FunctionKind::Freestanding => None,
                 FunctionKind::Method(resource)
+                | FunctionKind::Getter(resource)
+                | FunctionKind::Setter(resource)
                 | FunctionKind::Static(resource)
                 | FunctionKind::Constructor(resource) => Some(*resource),
             })
