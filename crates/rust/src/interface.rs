@@ -170,6 +170,8 @@ impl<'i> InterfaceGenerator<'i> {
             let resource = match func.kind {
                 FunctionKind::Freestanding => None,
                 FunctionKind::Method(id)
+                | FunctionKind::Getter(id)
+                | FunctionKind::Setter(id)
                 | FunctionKind::Constructor(id)
                 | FunctionKind::Static(id) => Some(id),
             };
@@ -967,12 +969,18 @@ pub mod vtable{ordinal} {{
         };
         match func.kind {
             FunctionKind::Freestanding => {}
-            FunctionKind::Method(id) | FunctionKind::Static(id) | FunctionKind::Constructor(id) => {
+            FunctionKind::Method(id)
+            | FunctionKind::Static(id)
+            | FunctionKind::Getter(id)
+            | FunctionKind::Setter(id)
+            | FunctionKind::Constructor(id) => {
                 let name = self.resolve.types[id].name.as_ref().unwrap();
                 let name = to_upper_camel_case(name);
                 uwriteln!(self.src, "impl {name} {{");
                 sig.use_item_name = true;
-                if let FunctionKind::Method(_) = &func.kind {
+                if let FunctionKind::Method(_) | FunctionKind::Getter(_) | FunctionKind::Setter(_) =
+                    &func.kind
+                {
                     sig.self_arg = Some("&self".into());
                     sig.self_is_first_param = true;
                 }
@@ -990,7 +998,11 @@ pub mod vtable{ordinal} {{
 
         match func.kind {
             FunctionKind::Freestanding => {}
-            FunctionKind::Method(_) | FunctionKind::Static(_) | FunctionKind::Constructor(_) => {
+            FunctionKind::Method(_)
+            | FunctionKind::Static(_)
+            | FunctionKind::Getter(_)
+            | FunctionKind::Setter(_)
+            | FunctionKind::Constructor(_) => {
                 self.src.push_str("}\n");
             }
         }
@@ -1444,14 +1456,16 @@ pub mod vtable{ordinal} {{
         self.push_str("fn ");
         let func_name = if sig.use_item_name {
             if let FunctionKind::Constructor(_) = &func.kind {
-                "new"
+                "new".to_owned()
+            } else if let FunctionKind::Setter(_) = &func.kind {
+                format!("set_{}", func.item_name())
             } else {
-                func.item_name()
+                func.item_name().to_owned()
             }
         } else {
-            &func.name
+            func.name.to_owned()
         };
-        self.push_str(&to_rust_ident(func_name));
+        self.push_str(&to_rust_ident(&func_name));
         if let Some(generics) = &sig.generics {
             self.push_str(generics);
         }

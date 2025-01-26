@@ -1380,7 +1380,11 @@ fn group_by_resource<'a>(
     for func in funcs {
         match &func.kind {
             FunctionKind::Freestanding => by_resource.entry(None).or_default().push(func),
-            FunctionKind::Method(ty) | FunctionKind::Static(ty) | FunctionKind::Constructor(ty) => {
+            FunctionKind::Method(ty)
+            | FunctionKind::Static(ty)
+            | FunctionKind::Getter(ty)
+            | FunctionKind::Setter(ty)
+            | FunctionKind::Constructor(ty) => {
                 by_resource.entry(Some(*ty)).or_default().push(func);
             }
         }

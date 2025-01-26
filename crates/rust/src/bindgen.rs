@@ -899,8 +899,12 @@ impl Bindgen for FunctionBindgen<'_, '_> {
                         self.push_str(&format!("T::{}", to_rust_ident(&func.name)));
                         None
                     }
-                    FunctionKind::Method(_) | FunctionKind::Static(_) => {
+                    FunctionKind::Method(_) | FunctionKind::Static(_) | FunctionKind::Getter(_) => {
                         self.push_str(&format!("T::{}", to_rust_ident(func.item_name())));
+                        None
+                    }
+                    FunctionKind::Setter(_) => {
+                        self.push_str(&format!("T::set_{}", to_rust_ident(func.item_name())));
                         None
                     }
                     FunctionKind::Constructor(ty) => {
