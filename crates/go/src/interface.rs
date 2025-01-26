@@ -159,8 +159,12 @@ impl InterfaceGenerator<'_> {
         match func.kind {
             FunctionKind::Freestanding => func.name.to_upper_camel_case(),
             FunctionKind::Static(_) => func.name.replace('.', " ").to_upper_camel_case(),
-            FunctionKind::Method(_) => match self.direction {
+            FunctionKind::Method(_) | FunctionKind::Getter(_) => match self.direction {
                 Direction::Import => func.name.split('.').last().unwrap().to_upper_camel_case(),
+                Direction::Export => func.name.replace('.', " ").to_upper_camel_case(),
+            },
+            FunctionKind::Setter(_) => match self.direction {
+                Direction::Import => format!("Set{}", func.name.split('.').last().unwrap().to_upper_camel_case()),
                 Direction::Export => func.name.replace('.', " ").to_upper_camel_case(),
             },
             FunctionKind::Constructor(id) => match self.direction {
