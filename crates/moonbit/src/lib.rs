@@ -1074,11 +1074,25 @@ impl InterfaceGenerator<'_> {
             FunctionKind::Constructor(_) => {
                 func.name.replace("[constructor]", "").to_moonbit_ident()
             }
-            _ => func.name.split(".").last().unwrap().to_moonbit_ident(),
+            FunctionKind::Method(_) | FunctionKind::Static(_) => {
+                func.name.split(".").last().unwrap().to_moonbit_ident()
+            }
+            FunctionKind::Getter(_) => format!(
+                "get_{}",
+                func.name.split(".").last().unwrap().to_moonbit_ident()
+            ),
+            FunctionKind::Setter(_) => format!(
+                "set_{}",
+                func.name.split(".").last().unwrap().to_moonbit_ident()
+            ),
         };
         let type_name = match func.kind {
             FunctionKind::Freestanding => "".into(),
-            FunctionKind::Method(ty) | FunctionKind::Constructor(ty) | FunctionKind::Static(ty) => {
+            FunctionKind::Method(ty)
+            | FunctionKind::Getter(ty)
+            | FunctionKind::Setter(ty)
+            | FunctionKind::Constructor(ty)
+            | FunctionKind::Static(ty) => {
                 format!("{}::", self.type_name(&Type::Id(ty), true))
             }
         };
@@ -2384,6 +2398,22 @@ impl Bindgen for FunctionBindgen<'_, '_> {
                         let name = self.gen.type_name(&Type::Id(ty), false);
                         format!(
                             "{}::{}",
+                            name,
+                            func.name.split(".").last().unwrap().to_moonbit_ident()
+                        )
+                    }
+                    FunctionKind::Getter(ty) => {
+                        let name = self.gen.type_name(&Type::Id(ty), false);
+                        format!(
+                            "{}::get_{}",
+                            name,
+                            func.name.split(".").last().unwrap().to_moonbit_ident()
+                        )
+                    }
+                    FunctionKind::Setter(ty) => {
+                        let name = self.gen.type_name(&Type::Id(ty), false);
+                        format!(
+                            "{}::set_{}",
                             name,
                             func.name.split(".").last().unwrap().to_moonbit_ident()
                         )
