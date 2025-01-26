@@ -9,8 +9,8 @@ crate::generate!({
 
             /// An example of exporting an interface inline naming it directly.
             export environment: interface {
-                get: func(var: string) -> string;
-                set: func(var: string, val: string);
+                %get: func(var: string) -> string;
+                %set: func(var: string, val: string);
             }
 
             /// An example of exporting an interface defined in this file.

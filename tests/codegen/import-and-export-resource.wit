@@ -3,7 +3,7 @@ package my:resources;
 interface baz {
   resource x {
     constructor(s: string);
-    get: func() -> string;
+    %get: func() -> string;
   }
 }
 

@@ -3,7 +3,7 @@ package my:resources;
 interface foo {
   resource x {
     constructor(s: string);
-    get: func() -> string;
+    %get: func() -> string;
   }
 
   type y = x;

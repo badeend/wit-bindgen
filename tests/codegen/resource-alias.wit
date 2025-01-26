@@ -3,7 +3,7 @@ package my:resources;
 interface e1 {
   resource x {
     constructor(s: string);
-    get: func() -> string;
+    %get: func() -> string;
   }
 
   record foo { x: x }

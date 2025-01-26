@@ -3,7 +3,7 @@ package test:resource-alias-redux;
 interface resource-alias1 {
   resource thing {
     constructor(s: string);
-    get: func() -> string;
+    %get: func() -> string;
   }
 
   record foo { thing: thing }

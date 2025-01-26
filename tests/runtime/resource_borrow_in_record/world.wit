@@ -3,7 +3,7 @@ package test:resource-borrow-in-record;
 interface test {
   resource thing {
     constructor(s: string);
-    get: func() -> string;
+    %get: func() -> string;
   }
 
   record foo {
