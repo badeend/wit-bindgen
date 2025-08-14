@@ -32,12 +32,12 @@ syn = { version = "2.0.89", features = ["printing"] }
 futures = "0.3.31"
 
 wat = "1.236.0"
-wasmparser = "0.236.0"
-wasm-encoder = "0.236.0"
-wasm-metadata = { version = "0.236.0", default-features = false }
-wit-parser = "0.236.0"
-wit-component = "0.236.0"
-wasm-compose = "0.236.0"
+wasmparser = { git = "https://github.com/badeend/wasm-tools", branch = "fallible-constructors" }
+wasm-encoder = { git = "https://github.com/badeend/wasm-tools", branch = "fallible-constructors" }
+wasm-metadata = { git = "https://github.com/badeend/wasm-tools", branch = "fallible-constructors", default-features = false }
+wit-parser = { git = "https://github.com/badeend/wasm-tools", branch = "fallible-constructors" }
+wit-component = { git = "https://github.com/badeend/wasm-tools", branch = "fallible-constructors" }
+wasm-compose = { git = "https://github.com/badeend/wasm-tools", branch = "fallible-constructors" }
 
 wit-bindgen-core = { path = 'crates/core', version = '0.44.0' }
 wit-bindgen-c = { path = 'crates/c', version = '0.44.0' }

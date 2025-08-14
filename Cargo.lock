@@ -816,7 +816,7 @@ name = "test-helpers"
 version = "0.0.0"
 dependencies = [
  "codegen-macro",
- "wasm-encoder 0.236.0",
+ "wasm-encoder 0.236.0 (git+https://github.com/badeend/wasm-tools?branch=fallible-constructors)",
  "wit-bindgen-core",
  "wit-component",
  "wit-parser",
@@ -1000,8 +1000,7 @@ checksum = "ddbd7f2a9e3635abe5d4df93b12cadc8d6818079785ee4fab3719ae3c85a064e"
 [[package]]
 name = "wasm-compose"
 version = "0.236.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "98b5290a0aca685aab16c936f682b85e8e4e3a0bfe1843afd43372eb82e34f47"
+source = "git+https://github.com/badeend/wasm-tools?branch=fallible-constructors#9b249814e6286ba5298d2befdca427de1755b027"
 dependencies = [
  "anyhow",
  "heck 0.4.1",
@@ -1013,9 +1012,9 @@ dependencies = [
  "serde_derive",
  "serde_yaml",
  "smallvec",
- "wasm-encoder 0.236.0",
- "wasmparser 0.236.0",
- "wat",
+ "wasm-encoder 0.236.0 (git+https://github.com/badeend/wasm-tools?branch=fallible-constructors)",
+ "wasmparser 0.236.0 (git+https://github.com/badeend/wasm-tools?branch=fallible-constructors)",
+ "wat 1.236.0 (git+https://github.com/badeend/wasm-tools?branch=fallible-constructors)",
 ]
 
 [[package]]
@@ -1034,7 +1033,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3108979166ab0d3c7262d2e16a2190ffe784b2a5beb963edef154b5e8e07680b"
 dependencies = [
  "leb128fmt",
- "wasmparser 0.236.0",
+ "wasmparser 0.236.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "wasm-encoder"
+version = "0.236.0"
+source = "git+https://github.com/badeend/wasm-tools?branch=fallible-constructors#9b249814e6286ba5298d2befdca427de1755b027"
+dependencies = [
+ "leb128fmt",
+ "wasmparser 0.236.0 (git+https://github.com/badeend/wasm-tools?branch=fallible-constructors)",
 ]
 
 [[package]]
@@ -1056,13 +1064,12 @@ dependencies = [
 [[package]]
 name = "wasm-metadata"
 version = "0.236.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "12ac1c212d9a151aefa45403315d8eb5c81d64dd06103e2d5e0f351034f20169"
+source = "git+https://github.com/badeend/wasm-tools?branch=fallible-constructors#9b249814e6286ba5298d2befdca427de1755b027"
 dependencies = [
  "anyhow",
  "indexmap",
- "wasm-encoder 0.236.0",
- "wasmparser 0.236.0",
+ "wasm-encoder 0.236.0 (git+https://github.com/badeend/wasm-tools?branch=fallible-constructors)",
+ "wasmparser 0.236.0 (git+https://github.com/badeend/wasm-tools?branch=fallible-constructors)",
 ]
 
 [[package]]
@@ -1083,6 +1090,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "16d1eee846a705f6f3cb9d7b9f79b54583810f1fb57a1e3aea76d1742db2e3d2"
 dependencies = [
  "bitflags",
+ "indexmap",
+ "semver",
+]
+
+[[package]]
+name = "wasmparser"
+version = "0.236.0"
+source = "git+https://github.com/badeend/wasm-tools?branch=fallible-constructors#9b249814e6286ba5298d2befdca427de1755b027"
+dependencies = [
+ "bitflags",
  "hashbrown",
  "indexmap",
  "semver",
@@ -1099,7 +1116,19 @@ dependencies = [
  "leb128fmt",
  "memchr",
  "unicode-width 0.2.1",
- "wasm-encoder 0.236.0",
+ "wasm-encoder 0.236.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "wast"
+version = "236.0.0"
+source = "git+https://github.com/badeend/wasm-tools?branch=fallible-constructors#9b249814e6286ba5298d2befdca427de1755b027"
+dependencies = [
+ "bumpalo",
+ "leb128fmt",
+ "memchr",
+ "unicode-width 0.2.1",
+ "wasm-encoder 0.236.0 (git+https://github.com/badeend/wasm-tools?branch=fallible-constructors)",
 ]
 
 [[package]]
@@ -1108,7 +1137,15 @@ version = "1.236.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cc31704322400f461f7f31a5f9190d5488aaeafb63ae69ad2b5888d2704dcb08"
 dependencies = [
- "wast",
+ "wast 236.0.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "wat"
+version = "1.236.0"
+source = "git+https://github.com/badeend/wasm-tools?branch=fallible-constructors#9b249814e6286ba5298d2befdca427de1755b027"
+dependencies = [
+ "wast 236.0.0 (git+https://github.com/badeend/wasm-tools?branch=fallible-constructors)",
 ]
 
 [[package]]
@@ -1282,7 +1319,7 @@ dependencies = [
  "clap",
  "heck 0.5.0",
  "indexmap",
- "wasm-encoder 0.236.0",
+ "wasm-encoder 0.236.0 (git+https://github.com/badeend/wasm-tools?branch=fallible-constructors)",
  "wasm-metadata 0.236.0",
  "wit-bindgen-core",
  "wit-component",
@@ -1295,7 +1332,7 @@ dependencies = [
  "anyhow",
  "clap",
  "env_logger",
- "wasm-encoder 0.236.0",
+ "wasm-encoder 0.236.0 (git+https://github.com/badeend/wasm-tools?branch=fallible-constructors)",
  "wit-bindgen-c",
  "wit-bindgen-core",
  "wit-bindgen-cpp",
@@ -1326,7 +1363,7 @@ dependencies = [
  "clap",
  "heck 0.5.0",
  "test-helpers",
- "wasm-encoder 0.236.0",
+ "wasm-encoder 0.236.0 (git+https://github.com/badeend/wasm-tools?branch=fallible-constructors)",
  "wasm-metadata 0.236.0",
  "wit-bindgen-c",
  "wit-bindgen-core",
@@ -1429,9 +1466,9 @@ dependencies = [
  "wac-types",
  "wasi-preview1-component-adapter-provider",
  "wasm-compose",
- "wasm-encoder 0.236.0",
- "wasmparser 0.236.0",
- "wat",
+ "wasm-encoder 0.236.0 (git+https://github.com/badeend/wasm-tools?branch=fallible-constructors)",
+ "wasmparser 0.236.0 (git+https://github.com/badeend/wasm-tools?branch=fallible-constructors)",
+ "wat 1.236.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "wit-bindgen-csharp",
  "wit-component",
  "wit-parser",
@@ -1440,8 +1477,7 @@ dependencies = [
 [[package]]
 name = "wit-component"
 version = "0.236.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6f1404fddf6cdadb06a0812faa433c03208f444b867543814aa36a6322f33684"
+source = "git+https://github.com/badeend/wasm-tools?branch=fallible-constructors#9b249814e6286ba5298d2befdca427de1755b027"
 dependencies = [
  "anyhow",
  "bitflags",
@@ -1450,18 +1486,17 @@ dependencies = [
  "serde",
  "serde_derive",
  "serde_json",
- "wasm-encoder 0.236.0",
+ "wasm-encoder 0.236.0 (git+https://github.com/badeend/wasm-tools?branch=fallible-constructors)",
  "wasm-metadata 0.236.0",
- "wasmparser 0.236.0",
- "wat",
+ "wasmparser 0.236.0 (git+https://github.com/badeend/wasm-tools?branch=fallible-constructors)",
+ "wat 1.236.0 (git+https://github.com/badeend/wasm-tools?branch=fallible-constructors)",
  "wit-parser",
 ]
 
 [[package]]
 name = "wit-parser"
 version = "0.236.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4c643fd8e1a5c25a6d50299f8047e9a61e31cb486f8e230e944408da9b63a859"
+source = "git+https://github.com/badeend/wasm-tools?branch=fallible-constructors#9b249814e6286ba5298d2befdca427de1755b027"
 dependencies = [
  "anyhow",
  "id-arena",
@@ -1472,5 +1507,5 @@ dependencies = [
  "serde_derive",
  "serde_json",
  "unicode-xid",
- "wasmparser 0.236.0",
+ "wasmparser 0.236.0 (git+https://github.com/badeend/wasm-tools?branch=fallible-constructors)",
 ]
